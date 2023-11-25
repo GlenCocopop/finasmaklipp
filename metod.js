@@ -67,7 +67,7 @@ function processText(text) {
 }
 
 function createTextObject() {
-    let word = random(random(1) > 0.5 ? keywords : allWords); // Väljer ord från antingen keywords eller allWords
+    let word = random(random(1) > 0.5 ? keywords : allWords);
     let x = random(width);
     let y = random(height);
     let size = random(10, 24);
@@ -75,8 +75,9 @@ function createTextObject() {
     let font = random(fonts);
     let alpha = 0;
     let growing = true;
+    let growthRate = random(0.1, 0.5); // Lägg till en tillväxthastighet
 
-    return { word, x, y, size, color, font, alpha, growing };
+    return { word, x, y, size, color, font, alpha, growing, growthRate };
 }
 
 function draw() {
@@ -97,18 +98,18 @@ function drawKeyword(obj) {
 
 function updateKeyword(obj) {
     if (obj.growing) {
-        obj.alpha += 5; // Ökar opaciteten
-        obj.size += 0.5; // Ökar storleken
+        obj.alpha += obj.growthRate * 5; // Använd growthRate för att ändra opaciteten
+        obj.size += obj.growthRate * 0.5; // Använd growthRate för att ändra storleken
         if (obj.alpha > 255) {
             obj.growing = false;
         }
     } else {
-        obj.alpha -= 5; // Minskar opaciteten
+        obj.alpha -= obj.growthRate * 5;
         if (obj.alpha < 0) {
             obj.alpha = 0;
             obj.growing = true;
-            obj.word = random(random(1) > 0.5 ? keywords : allWords); // Väljer ett nytt ord
-            obj.x = random(width); // Ny position
+            obj.word = random(random(1) > 0.5 ? keywords : allWords);
+            obj.x = random(width);
             obj.y = random(height);
         }
     }
@@ -117,7 +118,3 @@ function updateKeyword(obj) {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
-
-
-
-
