@@ -20,14 +20,14 @@ header {
 
 .video-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Justera detta efter behov */
+    grid-template-columns: repeat(3, 1fr); /* 3 kolumner */
     grid-gap: 15px;
     padding: 20px 0;
 }
 
 .video-container {
     position: relative;
-    width: 100%;
+    overflow: hidden; /* Döljer överflödig innehåll */
     padding-top: 100%; /* Ger en 1:1 aspektförhållande */
 }
 
