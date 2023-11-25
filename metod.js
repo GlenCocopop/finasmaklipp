@@ -2,6 +2,7 @@ let textContent = "Något gick fel, från din sida förmodligen, jag vet vad jag
 let allWords = [];
 let keywords = [];
 let textObjects = [];
+let abstractShapes = []; // Array för abstrakta former
 let colors = [
     "#e2007c", // Ljusare Rosa
     "#008c45", // Liseberg Grönt
