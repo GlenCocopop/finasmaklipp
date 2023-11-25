@@ -61,8 +61,9 @@ function processText(text) {
     let doc = nlp(text);
     keywords = doc.topics().out('array');
 
-    for (let i = 0; i < 200; i++) { // Skapar 200 textobjekt
-        textObjects.push(createTextObject(i * 50)); // Skapar fördröjning
+    // Öka antalet textobjekt och minska fördröjningen mellan dem
+    for (let i = 0; i < 2000; i++) { // Använder 2000 textobjekt för högre täthet
+        textObjects.push(createTextObject(i * 5)); // Mindre fördröjning mellan varje objekt
     }
 }
 
@@ -75,7 +76,7 @@ function createTextObject(delay) {
     let font = random(fonts);
     let alpha = 0;
     let growing = true;
-    let timer = delay; // Lägger till en timer
+    let timer = delay; // Initial fördröjning för varje textobjekt
 
     return { word, x, y, size, color, font, alpha, growing, timer };
 }
@@ -84,11 +85,11 @@ function draw() {
     background(255, 25); // Låg opacitet för "fade"-effekten
 
     textObjects.forEach(obj => {
-        if (obj.timer <= 0) { // Kontrollerar timern
+        if (obj.timer <= 0) {
             drawKeyword(obj);
             updateKeyword(obj);
         } else {
-            obj.timer -= 1; // Räknar ner timern
+            obj.timer -= 1;
         }
     });
 }
@@ -121,7 +122,7 @@ function resetTextObject(obj) {
     obj.word = random(random(1) > 0.5 ? keywords : allWords);
     obj.x = random(width);
     obj.y = random(height);
-    obj.timer = 500; // Återställer timern
+    obj.timer = random(500, 1000); // Slumpmässig ny timer för kontinuerlig och oregelbunden loop
 }
 
 function windowResized() {
