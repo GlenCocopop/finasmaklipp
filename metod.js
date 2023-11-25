@@ -2,23 +2,11 @@ let textContent = "Något gick fel, från din sida förmodligen, jag vet vad jag
 let allWords = [];
 let keywords = [];
 let textObjects = [];
-let abstractShapes = []; // Array för abstrakta former
+let abstractShapes = [];
 let colors = [
-    "#e2007c", // Ljusare Rosa
-    "#008c45", // Liseberg Grönt
-    "#fcebeb", // Ljus Rosa
-    "#b8e986", // Ljus Grönt
-    "#f48fb1", // Dämpad Rosa
-    "#6abf69", // Mättat Grönt
-    "#ff77a9", // Stark Rosa
-    "#33a652", // Mörkare Grönt
-    "#ffd1dc", // Blek Rosa
-    "#004d1a", // Djupt Grönt
-    "#ff4081", // Levande Rosa
-    "#a5d6a7", // Pastell Grönt
-    "#ff80ab", // Soft Rosa
-    "#00e676", // Neon Grönt
-    "#f06292"  // Korall Rosa
+    "#e2007c", "#008c45", "#fcebeb", "#b8e986", "#f48fb1",
+    "#6abf69", "#ff77a9", "#33a652", "#ffd1dc", "#004d1a",
+    "#ff4081", "#a5d6a7", "#ff80ab", "#00e676", "#f06292"
 ];
 let fonts = []; // Array för att lagra typsnitt
 
@@ -44,7 +32,7 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    for (let i = 0; i < 50; i++) { // Skapar 50 abstrakta former
+    for (let i = 0; i < 50; i++) {
         abstractShapes.push(createAbstractShape());
     }
     fetch('metod.txt')
@@ -53,7 +41,7 @@ function setup() {
             processText(text);
         })
         .catch(err => {
-            console.error('Fel vid inläsning av metod.txt, använder fallback-text.', err);
+            console.error('Fel vid inläsning av metod.txt', err);
             processText(textContent);
         });
 }
@@ -68,11 +56,11 @@ function createAbstractShape() {
 }
 
 function processText(text) {
-    allWords = text.match(/\b(\w+)\b/g); // Extraherar alla ord
+    allWords = text.match(/\b(\w+)\b/g);
     let doc = nlp(text);
     keywords = doc.topics().out('array');
 
-    for (let i = 0; i < 2000; i++) { // Skapar 2000 textobjekt
+    for (let i = 0; i < 2000; i++) {
         textObjects.push(createTextObject(i * 10));
     }
 }
@@ -86,14 +74,14 @@ function createTextObject(delay) {
     let font = random(fonts);
     let alpha = 0;
     let growing = true;
-    let timer = delay; // Initial fördröjning för varje textobjekt
+    let timer = delay;
 
     return { word, x, y, size, color, font, alpha, growing, timer };
 }
 
 function draw() {
-    background(0); // Svart bakgrund
-    drawAbstractShapes(); // Rita abstrakta former
+    background(0);
+    drawAbstractShapes();
 
     textObjects.forEach(obj => {
         if (obj.timer <= 0) {
@@ -106,9 +94,9 @@ function draw() {
 }
 
 function drawAbstractShapes() {
-    fill(50); // Mörkgrå färg för abstrakta former
-    noStroke();
     abstractShapes.forEach(shape => {
+        fill(50, 50, 50, 120);
+        noStroke();
         ellipse(shape.x, shape.y, shape.size);
         shape.x += random(-shape.speed, shape.speed);
         shape.y += random(-shape.speed, shape.speed);
@@ -116,18 +104,35 @@ function drawAbstractShapes() {
 }
 
 function drawKeyword(obj) {
-    fill(color(obj.color + obj.alpha.toString(16)));
+    let alphaValue = floor(obj.alpha);
+    fill(color(obj.color + alphaValue.toString(16)));
     textFont(obj.font);
     textSize(obj.size);
     text(obj.word, obj.x, obj.y);
 }
 
 function updateKeyword(obj) {
-    // Samma som tidigare
+    if (obj.growing) {
+        obj.alpha += 5;
+        obj.size += 0.5;
+        if (obj.alpha > 255) {
+            obj.growing = false;
+        }
+    } else {
+        obj.alpha -= 5;
+        if (obj.alpha < 0) {
+            resetTextObject(obj);
+        }
+    }
 }
 
 function resetTextObject(obj) {
-    // Samma som tidigare
+    obj.alpha = 0;
+    obj.growing = true;
+    obj.word = random(random(1) > 0.5 ? keywords : allWords);
+    obj.x = random(width);
+    obj.y = random(height);
+    obj.timer = random(500, 1000);
 }
 
 function windowResized() {
