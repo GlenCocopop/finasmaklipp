@@ -1,0 +1,87 @@
+// Din textsträng
+let textContent = "Den Tragikomiska Mänskligheten: En Analys
+Mänskligheten har alltid haft en fascinerande dragning till det tragikomiska, det som får oss att småle samtidigt som det berör oss på djupet. Denna dragning speglas tydligt i audiovisuella medier, särskilt i televisionen, som fungerar som en spegel av våra kollektiva erfarenheter, drömmar och farhågor.
+Reflektion av Mänsklighet i Media
+Televisionen, sedan dess födelse, har varit ett medium där mänsklig natur och kultur uttrycks och utforskas. I dess tidiga dagar tog svensk TV sig själv på stort allvar, en reflektion av en nationell identitetssökande. Denna allvarliga ton, blandat med mer kommersiella och lokala inslag, skapade en mosaik av kulturella uttryck.
+Det Tragikomiska i Vår Natur
+Det tragikomiska elementet i mänsklig natur kommer fram när vi konfronteras med situationer som både är sorgliga och humoristiska. Detta kan vara en klumpig karaktär som faller, men snabbt reser sig, eller en seriös nyhetsankare som råkar ut för en rolig missöde. Dessa ögonblick fångar vår mänskliga tendens att skratta åt våra egna misslyckanden och brister.
+Småle för att Bevara Mänskligheten
+Att småle i dessa situationer är en försvarsmekanism. Det hjälper oss att hantera de obehagliga sanningarna om vår bräcklighet och förgänglighet. Genom att skratta åt det obekväma eller pinsamma, tar vi tillbaka en del kontroll över våra liv och våra känslor. Detta är en viktig aspekt av vår mänsklighet - förmågan att skratta i ansiktet av motgång.
+Speglas i TV och Film
+I mitt konstnärliga projekt kommer jag att utforska dessa teman genom att sampla och remixa gammalt found footage från svensk och internationell TV. Denna metod liknar den hos en hiphop-producent och syftar till att skapa en unik audiovisuell upplevelse som reflekterar vår kultur och historia. Genom att leka med klipp och musik, avsikten är att framhäva hur TV-mediet inte bara reflekterar våra liv utan också påverkar vår uppfattning om mänskligheten.
+Den Inneboende Driften att Söka Existensbekräftelse
+Ett fascinerande och ofta småle-framkallande fenomen är vår inneboende drift att ställa frågan om vår existens till andra. Denna tendens blir särskilt tydlig i lokala TV-sändningar och öppna kanaler, vilka kan ses som en guldgruva för sådana ögonblick.
+Lokal-TV som Reflektion av Mänsklig Längtan
+I både professionella och oprofessionella TV-produktioner finns det ofta klipp som framkallar ett småle. Detta beror på att deltagarna, framför kameran, verkar drivna av en önskan att bekräfta sin egen existens. De blir så upptagna av denna strävan att de missar att det de gör kan framstå som tragiskt eller meningslöst.
+Den Obesvarade Frågan
+Det tragikomiska i dessa situationer uppstår ofta eftersom det inte finns något svar på deras fråga om existens. Kameran ställer frågan, men kan aldrig besvara den. Denna ensidiga kommunikation skapar en absurditet som blir både rörande och humoristisk.
+Tragikomiken i Det Outtalade
+Det som verkligen är tragikomiskt är inte bara det som sägs eller görs framför kameran, utan även det underförstådda – det outtalade. Det finns en sorgsen skönhet i dessa försök att fånga livets essens, att förmedla en känsla av att “finnas” genom media, trots att svaret aldrig kan ges.
+Småle som Svar
+Vårt svar, som publik, blir att småle. Detta småle är en erkänsla av det tragikomiska i situationen, en uppskattning av deras strävan, och ett tecken på vår egen mänskliga samhörighet. Vi småler inte bara för att det är roligt, utan för att vi känner igen oss själva i denna desperata längtan efter bekräftelse.
+Slutord
+Genom att observera och analysera det tragikomiska i mänsklig natur, och hur detta speglas i audiovisuella medier, kan vi få en djupare förståelse för oss själva. Det är en påminnelse om att vi, trots allt, är charmiga och komplexa varelser, som söker bekräftelse och förståelse i en ofta obegriplig värld
+Strategi för Att Hitta Passande Klipp
+Definiera Tematiska Kriterier: Börja med att tydligt definiera de teman jag är intresserad av, såsom det tragikomiska i mänsklig natur, sökandet efter existensbekräftelse, och absurditeten i enkelriktad kommunikation (t.ex. framför kameran).
+Forskning och Utforskning: Utforska olika källor för att hitta material. Detta inkluderar arkiv för svensk och internationell TV, onlineplattformar som YouTube, och specifika databaser för historiskt TV-material.
+Nätverkande och Samarbete: Kontakta TV-arkivister, dokumentärfilmare och andra konstnärer som kan ha tillgång till eller kunskap om unika klipp.
+Användning av Sociala Medier och Forum: Använd sociala medier och onlineforum för att fråga om specifika klipp eller för att få tips om var jag kan hitta intressant material.
+Teknisk Analysering: Använd programvara för videoredigering för att analysera potentiella klipp. Detta kan hjälpa dig att bedöma om ett klipp passar dina kriterier.
+Reflektion och Urval: Efter att ha samlat en samling potentiella klipp, ta dig tid att reflektera över hur väl varje klipp matchar dina tematiska kriterier och den känslomässiga inverkan de har.
+Checklista för Att Välja Klipp
+Tema-Enlighet: Kontrollera att varje klipp reflekterar temat om mänsklig existentiell sökande och det tragikomiska.
+Emotionell Påverkan: Bedöm om klippet framkallar de önskade reaktionerna, såsom ett småle eller en reflektion över mänsklig natur.
+Kvalitet och Klarhet: Se till att klippet är av tillräcklig kvalitet för att vara förståeligt och visuellt engagerande.
+Kontext och Bakgrund: Varje klipp bör ha en klar kontext som förstärker dess betydelse i ditt projekt.
+Kompatibilitet med Övriga Klipp: Se till att klippet passar väl med andra klipp i ditt projekt för att skapa en sammanhängande berättelse.
+Unikhet och Originalitet: Prioritera klipp som tillför något unikt eller oväntat till projektet.
+Tidsram och Längd: Klippet bör passa in i den önskade tidsramen för mitt projekt.";
+
+function setup() {
+    createCanvas(windowWidth, windowHeight);
+    background(255);
+
+    // NLP-analys
+    let doc = nlp(textContent);
+    let keywords = doc.topics().out('array');
+
+    // Skapa en visuell representation för varje nyckelord
+    keywords.forEach((word, index) => {
+        let x = random(width);
+        let y = random(height);
+        drawKeyword(word, x, y);
+    });
+}
+
+function drawKeyword(word, x, y) {
+    let col = color(random(255), random(255), random(255), 150);
+    fill(col);
+    textSize(16);
+    text(word, x, y);
+}
+
+function draw() {
+    // Lägg till en svag rörelseeffekt
+    if (mouseIsPressed) {
+        let col = color(random(255), random(255), random(255), 150);
+        fill(col);
+        ellipse(mouseX, mouseY, 20, 20);
+    }
+}
+
+function mousePressed() {
+    // Skapa en ny visuell effekt varje gång användaren klickar
+    background(255);
+    let doc = nlp(textContent);
+    let keywords = doc.topics().out('array');
+    keywords.forEach((word, index) => {
+        let x = random(width);
+        let y = random(height);
+        drawKeyword(word, x, y);
+    });
+}
+
+function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+}
+
