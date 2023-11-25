@@ -60,10 +60,21 @@ footer {
 .info-box {
     background-color: #d3d3d3; /* Ljusgrå färg */
     border-radius: 15px; /* Runda hörn */
+    color: white; /* Vit text */
     padding: 20px;
-    margin: 20px;
-    cursor: pointer; /* Ändrar muspekaren för att indikera klickbarhet */
-    transition: all 0.3s ease; /* Gör övergången mjuk */
+    position: absolute; /* Gör så att rutan kan positioneras ovanpå andra element */
+    top: 20px; /* Justera dessa värden efter behov för att positionera rutan */
+    left: 20px;
+    z-index: 10; /* Sätter rutan över andra element */
+    width: calc(100% - 40px); /* Full bredd med marginal */
+    box-sizing: border-box; /* Inkluderar padding i bredden */
+    cursor: pointer; /* Visar en pekare för att indikera att det går att interagera */
+    transition: all 0.3s ease; /* Gör att övergångarna blir mjuka */
+    display: flex; /* Använder flexbox för att centrera innehållet vertikalt */
+    align-items: center; /* Centrerar innehållet vertikalt */
+    justify-content: center; /* Centrerar innehållet horisontellt */
+    max-height: 60px; /* Begränsar höjden initialt */
+    overflow: hidden; /* Gömmer innehåll som inte får plats */
 }
 
 .info-box p {
@@ -77,5 +88,5 @@ footer {
 }
 
 .expanded {
-    display: block; /* Visar innehållet när det är expanderat */
+    max-height: none; /* Tillåter rutan att expandera helt */
 }
