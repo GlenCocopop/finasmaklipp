@@ -54,3 +54,28 @@ footer {
 .description h2 {
     margin-top: 0;
 }
+
+
+
+.info-box {
+    background-color: #d3d3d3; /* Ljusgrå färg */
+    border-radius: 15px; /* Runda hörn */
+    padding: 20px;
+    margin: 20px;
+    cursor: pointer; /* Ändrar muspekaren för att indikera klickbarhet */
+    transition: all 0.3s ease; /* Gör övergången mjuk */
+}
+
+.info-box p {
+    color: white; /* Vit text */
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.hidden {
+    display: none; /* Döljer innehållet från början */
+}
+
+.expanded {
+    display: block; /* Visar innehållet när det är expanderat */
+}
