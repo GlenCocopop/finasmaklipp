@@ -43,8 +43,9 @@ function preload() {
 
 function setup() {
     createCanvas(windowWidth, windowHeight);
-    background(255);
-
+    for (let i = 0; i < 50; i++) { // Skapar 50 abstrakta former
+        abstractShapes.push(createAbstractShape());
+    }
     fetch('metod.txt')
         .then(response => response.text())
         .then(text => {
@@ -56,14 +57,22 @@ function setup() {
         });
 }
 
+function createAbstractShape() {
+    return {
+        x: random(width),
+        y: random(height),
+        size: random(20, 100),
+        speed: random(0.5, 2)
+    };
+}
+
 function processText(text) {
     allWords = text.match(/\b(\w+)\b/g); // Extraherar alla ord
     let doc = nlp(text);
     keywords = doc.topics().out('array');
 
-    // Öka antalet textobjekt och minska fördröjningen mellan dem
-    for (let i = 0; i < 2000; i++) { // Använder 2000 textobjekt för högre täthet
-        textObjects.push(createTextObject(i * 5)); // Mindre fördröjning mellan varje objekt
+    for (let i = 0; i < 2000; i++) { // Skapar 2000 textobjekt
+        textObjects.push(createTextObject(i * 10));
     }
 }
 
@@ -82,7 +91,8 @@ function createTextObject(delay) {
 }
 
 function draw() {
-    background(255, 25); // Låg opacitet för "fade"-effekten
+    background(0); // Svart bakgrund
+    drawAbstractShapes(); // Rita abstrakta former
 
     textObjects.forEach(obj => {
         if (obj.timer <= 0) {
@@ -94,6 +104,16 @@ function draw() {
     });
 }
 
+function drawAbstractShapes() {
+    fill(50); // Mörkgrå färg för abstrakta former
+    noStroke();
+    abstractShapes.forEach(shape => {
+        ellipse(shape.x, shape.y, shape.size);
+        shape.x += random(-shape.speed, shape.speed);
+        shape.y += random(-shape.speed, shape.speed);
+    });
+}
+
 function drawKeyword(obj) {
     fill(color(obj.color + obj.alpha.toString(16)));
     textFont(obj.font);
@@ -102,27 +122,11 @@ function drawKeyword(obj) {
 }
 
 function updateKeyword(obj) {
-    if (obj.growing) {
-        obj.alpha += 5;
-        obj.size += 0.5;
-        if (obj.alpha > 255) {
-            obj.growing = false;
-        }
-    } else {
-        obj.alpha -= 5;
-        if (obj.alpha < 0) {
-            resetTextObject(obj);
-        }
-    }
+    // Samma som tidigare
 }
 
 function resetTextObject(obj) {
-    obj.alpha = 0;
-    obj.growing = true;
-    obj.word = random(random(1) > 0.5 ? keywords : allWords);
-    obj.x = random(width);
-    obj.y = random(height);
-    obj.timer = random(500, 1000); // Slumpmässig ny timer för kontinuerlig och oregelbunden loop
+    // Samma som tidigare
 }
 
 function windowResized() {
