@@ -27,18 +27,18 @@ header {
 
 .video-gallery .video-container {
     position: relative;
-    padding-top: 100%; /* Ger en 1:1 aspektförhållande */
+    width: 480px; /* eller någon annan storlek du föredrar */
+    height: 480px; /* aspektförhållande 1:1 */
+    margin: auto; /* centrera containern */
+    overflow: hidden; /* dölj delar av videon som går utanför containern */
 }
 
 .video-gallery .video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     border: none;
+    object-fit: cover; /* täck hela området av containern, kan klippa videon */
 }
-
 footer {
     text-align: center;
     padding: 20px 0;
