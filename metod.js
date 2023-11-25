@@ -27,17 +27,17 @@ function preload() {
     fonts.push(loadFont('Courgette.ttf'));
     fonts.push(loadFont('OpenSans.ttf'));
     fonts.push(loadFont('Merriweather.ttf'));
-    fonts.push(loadFont('DancingScript.tff'));
-    fonts.push(loadFont('Pacifico.tff'));
-    fonts.push(loadFont('Oswald.tff'));
-    fonts.push(loadFont('Lato.tff'));
-    fonts.push(loadFont('AmaticSC.tff'));
-    fonts.push(loadFont('PlayfairDisplay.tff'));
-    fonts.push(loadFont('IndieFlower.tff'));
-    fonts.push(loadFont('BebasNeue.tff'));
-    fonts.push(loadFont('Montserrat.tff'));
-    fonts.push(loadFont('Roboto.tff'));
-    fonts.push(loadFont('Raleway.tff'));
+    fonts.push(loadFont('DancingScript.ttf'));
+    fonts.push(loadFont('Pacifico.ttf'));
+    fonts.push(loadFont('Oswald.ttf'));
+    fonts.push(loadFont('Lato.ttf'));
+    fonts.push(loadFont('AmaticSC.ttf'));
+    fonts.push(loadFont('PlayfairDisplay.ttf'));
+    fonts.push(loadFont('IndieFlower.ttf'));
+    fonts.push(loadFont('BebasNeue.ttf'));
+    fonts.push(loadFont('Montserrat.ttf'));
+    fonts.push(loadFont('Roboto.ttf'));
+    fonts.push(loadFont('Raleway.ttf'));
     // Lägg till fler typsnitt efter behov
 }
 
