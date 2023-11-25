@@ -20,24 +20,24 @@ header {
 
 .video-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Skapar en responsiv grid-layout */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Justera detta efter behov */
     grid-gap: 15px;
     padding: 20px 0;
 }
 
-.video-gallery .video-container {
+.video-container {
     position: relative;
-    width: 480px; /* eller någon annan storlek du föredrar */
-    height: 480px; /* aspektförhållande 1:1 */
-    margin: auto; /* centrera containern */
-    overflow: hidden; /* dölj delar av videon som går utanför containern */
+    width: 100%;
+    padding-top: 100%; /* Ger en 1:1 aspektförhållande */
 }
 
-.video-gallery .video-container iframe {
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     border: none;
-    object-fit: cover; /* täck hela området av containern, kan klippa videon */
 }
 footer {
     text-align: center;
