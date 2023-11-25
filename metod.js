@@ -62,11 +62,11 @@ function processText(text) {
     keywords = doc.topics().out('array');
 
     for (let i = 0; i < 200; i++) { // Skapar 200 textobjekt
-        textObjects.push(createTextObject());
+        textObjects.push(createTextObject(i * 50)); // Skapar fördröjning
     }
 }
 
-function createTextObject() {
+function createTextObject(delay) {
     let word = random(random(1) > 0.5 ? keywords : allWords);
     let x = random(width);
     let y = random(height);
@@ -75,17 +75,21 @@ function createTextObject() {
     let font = random(fonts);
     let alpha = 0;
     let growing = true;
-    let growthRate = random(0.1, 0.5); // Lägg till en tillväxthastighet
+    let timer = delay; // Lägger till en timer
 
-    return { word, x, y, size, color, font, alpha, growing, growthRate };
+    return { word, x, y, size, color, font, alpha, growing, timer };
 }
 
 function draw() {
     background(255, 25); // Låg opacitet för "fade"-effekten
 
     textObjects.forEach(obj => {
-        drawKeyword(obj);
-        updateKeyword(obj);
+        if (obj.timer <= 0) { // Kontrollerar timern
+            drawKeyword(obj);
+            updateKeyword(obj);
+        } else {
+            obj.timer -= 1; // Räknar ner timern
+        }
     });
 }
 
@@ -98,21 +102,26 @@ function drawKeyword(obj) {
 
 function updateKeyword(obj) {
     if (obj.growing) {
-        obj.alpha += obj.growthRate * 5; // Använd growthRate för att ändra opaciteten
-        obj.size += obj.growthRate * 0.5; // Använd growthRate för att ändra storleken
+        obj.alpha += 5;
+        obj.size += 0.5;
         if (obj.alpha > 255) {
             obj.growing = false;
         }
     } else {
-        obj.alpha -= obj.growthRate * 5;
+        obj.alpha -= 5;
         if (obj.alpha < 0) {
-            obj.alpha = 0;
-            obj.growing = true;
-            obj.word = random(random(1) > 0.5 ? keywords : allWords);
-            obj.x = random(width);
-            obj.y = random(height);
+            resetTextObject(obj);
         }
     }
+}
+
+function resetTextObject(obj) {
+    obj.alpha = 0;
+    obj.growing = true;
+    obj.word = random(random(1) > 0.5 ? keywords : allWords);
+    obj.x = random(width);
+    obj.y = random(height);
+    obj.timer = 500; // Återställer timern
 }
 
 function windowResized() {
